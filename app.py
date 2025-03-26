@@ -59,12 +59,14 @@ st.markdown(
 # =============================================================================
 # Création des onglets principaux (Page d'accueil + 3 Dashboard)
 # =============================================================================
-tabs = st.tabs(["Accueil", "Dashboard 1", "Dashboard 2", "Dashboard 3"])
+tabs = st.tabs(["Accueil", "Small Multiples", "Carte des logements", "Carte Choroplète"])
 
 # =============================================================================
 # Onglet Accueil
 # =============================================================================
 with tabs[0]:
+    
+    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/2560px-Airbnb_Logo_B%C3%A9lo.svg.png", width=200)
     st.title("Bienvenue sur le Dashboard AirBnB à Paris")
     st.markdown(
         """
@@ -72,9 +74,9 @@ with tabs[0]:
         Cette application interactive vous permet d'explorer les données des logements AirBnB à Paris.
         
         **Onglets disponibles :**
-        - **Dashboard 1 :** Analyse générale, carte choroplèthe et small multiples (avec données géographiques).
-        - **Dashboard 2 :** Analyse des types de logements avec histogramme, box plot et carte Folium.
-        - **Dashboard 3 :** Analyse cartographique détaillée avec carte choroplèthe interactive et graphique de classement.
+        - **Page 1 :** Analyse générale, carte choroplèthe et small multiples (avec données géographiques).
+        - **Page 2 :** Analyse des types de logements avec histogramme, box plot et carte Folium.
+        - **Page 3 :** Analyse cartographique détaillée avec carte choroplèthe interactive et graphique de classement.
         
         Sélectionnez un onglet ci-dessus pour débuter l'exploration !
         """
@@ -84,7 +86,7 @@ with tabs[0]:
 # Dashboard 1 : Code 1 - Analyse générale, carte choroplèthe et small multiples
 # =============================================================================
 with tabs[1]:
-    st.header("Dashboard 1 : Analyse générale et Small Multiples")
+    st.header("Page 1 : Analyse générale et Small Multiples")
     
     @st.cache_data
     def load_data_dashboard1():
@@ -139,7 +141,7 @@ with tabs[1]:
 # Dashboard 2 : Code 2 - Histogramme, box plot et carte Folium
 # =============================================================================
 with tabs[2]:
-    st.header("Dashboard 2 : Analyse des types de logements et carte Folium")
+    st.header("Page 2 : Analyse des types de logements et carte Folium")
     # Chargement des données depuis la même source (URL)
     data2 = pd.read_csv("https://data.insideairbnb.com/france/ile-de-france/paris/2024-09-06/visualisations/listings.csv")
     
@@ -186,7 +188,7 @@ with tabs[2]:
 # Dashboard 3 : Code 3 - Analyse cartographique détaillée
 # =============================================================================
 with tabs[3]:
-    st.header("Dashboard 3 : Analyse cartographique détaillée")
+    st.header("Page 3 : Analyse cartographique détaillée")
     
     @st.cache_data
     def charger_donnees_dashboard3():
@@ -209,7 +211,7 @@ with tabs[3]:
     max_logements = int(agg["count"].max())
     
     # Barre latérale pour filtres spécifiques à Dashboard 3
-    st.sidebar.header("Filtres et options Dashboard 3")
+    st.sidebar.header("Filtres et options page 3")
     statistique = st.sidebar.selectbox(
         "Sélectionnez la statistique à afficher",
         ("Nombre de logements", "Prix moyen", "Part de logement entier")
